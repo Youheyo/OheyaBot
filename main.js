@@ -42,7 +42,12 @@ client.on('interactionCreate', async interaction => {
 		console.error(error);
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
+})
+
+process.on('unhandledRejection', error => {
+	console.error('Unhandled promise rejection:', error);
 });
+
 
 // Login to Discord with your client's token
 client.login(token);
