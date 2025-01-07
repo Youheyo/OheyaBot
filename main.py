@@ -10,7 +10,8 @@ with open('config.json') as f:
     data = json.load(f)
     token = data["token"]
     prefix = data["prefix"]
-    
+
+
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
@@ -34,5 +35,19 @@ async def ping(ctx):
 async def echo(ctx, *text):
     argument = ' '.join(text)
     await ctx.send(f'{argument}')
+
+
+@bot.command()
+@commands.has_permissions(manage_messages=True)
+async def prune(ctx, num: int):
+    if(num < 1):
+        await ctx.send("No messages were deleted")
+        return
+    deleted = await ctx.channel.purge(limit=num+1)
+    await ctx.send(f'{len(deleted) -1} messages were deleted', delete_after=5 )
+
+@bot.command()
+async def eya(ctx):
+    await ctx.send(f"Hello!")
 
 bot.run(token)
