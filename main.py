@@ -10,7 +10,7 @@ with open('config.json') as f:
     data = json.load(f)
     token = data["token"]
     prefix = data["prefix"]
-
+    invitelink = data["invite"]
 
 intents = discord.Intents.default()
 intents.members = True
@@ -35,6 +35,18 @@ async def ping(ctx):
 async def echo(ctx, *text):
     argument = ' '.join(text)
     await ctx.send(f'{argument}')
+
+@bot.command()
+async def invite(ctx):
+    '''Get an Invite to the server'''
+    embed = discord.Embed(
+        title="Oh Hey Yo Invite",
+        url = invitelink,
+        description = "Invite to the server",
+        colour=discord.Colour.orange()
+    )
+    embed.set_thumbnail(url = "https://azurlane.netojuu.com/images/4/4a/ClevelandChibi.png")
+    await ctx.send(embed=embed)
 
 
 @bot.command()
