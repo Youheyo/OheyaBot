@@ -2,7 +2,8 @@
 
 import discord
 from discord.ext import commands
-import random
+from os import listdir
+import asyncio
 
 import json
 
@@ -10,7 +11,6 @@ with open('config.json') as f:
     data = json.load(f)
     token = data["token"]
     prefix = data["prefix"]
-    invitelink = data["invite"]
 
 intents = discord.Intents.default()
 intents.members = True
@@ -20,34 +20,23 @@ description = "A 4Fun bot currently being developed into discord.py"
 
 bot = commands.Bot(command_prefix=prefix, description=description, intents=intents)
 
+async def load():
+    for cog in listdir('./cogs'):
+        if cog.endswith('.py'):
+            print(f"Loading in {cog}")
+            await bot.load_extension(f'cogs.{cog[:-3]}')
+
+async def main():
+    async with bot:
+        await load()
+        await bot.start(token)
+
+        
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
-
-@bot.command()
-async def ping(ctx):
-    print(f"Pong!")
-    await ctx.send("Pong!")
-
-@bot.command()
-async def echo(ctx, *text):
-    argument = ' '.join(text)
-    await ctx.send(f'{argument}')
-
-@bot.command()
-async def invite(ctx):
-    '''Get an Invite to the server'''
-    embed = discord.Embed(
-        title="Oh Hey Yo Invite",
-        url = invitelink,
-        description = "Invite to the server",
-        colour=discord.Colour.orange()
-    )
-    embed.set_thumbnail(url = "https://azurlane.netojuu.com/images/4/4a/ClevelandChibi.png")
-    await ctx.send(embed=embed)
-
 
 @bot.command()
 @commands.has_permissions(manage_messages=True)
@@ -58,8 +47,5 @@ async def prune(ctx, num: int):
     deleted = await ctx.channel.purge(limit=num+1)
     await ctx.send(f'{len(deleted) -1} messages were deleted', delete_after=5 )
 
-@bot.command()
-async def eya(ctx):
-    await ctx.send(f"Hello!")
 
-bot.run(token)
+asyncio.run(main())
