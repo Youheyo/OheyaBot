@@ -1,6 +1,17 @@
+"""
+General use commands anyone on the server can use
+
+Commands:
+
+Echo 	- Echoes back message
+eya  	- Replies with Hello
+invite 	- Sends an embed with the invite link
+ping	- Replies with 'Pong' and the latency
+
+"""
+import json
 from discord.ext import commands
 import discord
-import json
 
 class General(commands.Cog):
 	def __init__(self, bot):
@@ -10,7 +21,7 @@ class General(commands.Cog):
 			self.link = data['invite']
 
 	@commands.command()
-	async def echo(self, ctx, *text):
+	async def echo(self, ctx, *text, alias="Echo"):
 		'''Echoes back your message'''
 		argument = ' '.join(text)
 		await ctx.send(f'{argument}')
@@ -23,14 +34,7 @@ class General(commands.Cog):
 	@commands.command()
 	async def invite(self, ctx):
 		'''Get an Invite to the server'''
-		embed = discord.Embed(
-			title="Oh Hey Yo Invite",
-			url = self.link,
-			description = "Invite to the server",
-			colour=discord.Colour.orange()
-		)
-		embed.set_thumbnail(url = "https://azurlane.netojuu.com/images/4/4a/ClevelandChibi.png")
-		await ctx.send(embed=embed)
+		await ctx.send(self.link)
 
 
 	@commands.command()
