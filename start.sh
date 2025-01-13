@@ -4,4 +4,4 @@ clear
 
 echo Starting up OheyaBot
 
-python3 main.py
+./bot-env/bin/python3 main.py

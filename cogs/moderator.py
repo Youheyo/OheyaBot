@@ -1,8 +1,25 @@
-from discord.ext import commands
-from discord import client
-from os import listdir
+"""
+Moderator related commands
 
-BANNED_WORDS = ['fuck', 'shit']
+Commands:
+
+prune	- Delete messages by specified amount Requires Manage_Messages permission. 
+
+! Currently doesn't seem tobe working
+reload	- Reloads cogs
+
+- - - - -
+
+Listeners:
+
+on_message - Checks for banned words. Deletes and pings the author afterwards
+
+
+"""
+from os import listdir
+from discord.ext import commands
+
+BANNED_WORDS = ['fuck']
 
 class Moderator(commands.Cog):
     
