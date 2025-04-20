@@ -8,6 +8,13 @@ eya  	- Replies with Hello
 invite 	- Sends an embed with the invite link
 ping	- Replies with 'Pong' and the latency
 
+- - - - -
+
+Listeners:
+
+on_message - Detects when a user has a certain string of words
+			- Tags
+				- KMS and related
 """
 import json
 from discord.ext import commands
@@ -26,7 +33,7 @@ class General(commands.Cog):
 		argument = ' '.join(text)
 		await ctx.send(f'{argument}')
 
-	@commands.command(name='eya')
+	@commands.command(name='eya', hidden=True)
 	async def oheya(self, ctx):
 		"""Says Hello"""
 		await ctx.send(f"Hello!")
@@ -42,6 +49,26 @@ class General(commands.Cog):
 		'''Checks the latency'''
 		print(f"Pong! {round(self.bot.latency* 1000, 2)} ms")
 		await ctx.send(f"Pong! {round(self.bot.latency* 1000, 2)} ms")
+
+	@commands.Cog.listener()
+	async def on_message(self, ctx):
+
+		'''Sends a message depending on the message content'''
+
+		if(ctx.author.bot):
+			return
+
+		keyword = ['kms', 'kill myself', 'kill my self' ]
+		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
+		if any(word in ctx.content.lower() for word in keyword):
+			# await ctx.channel.send(file = file)
+			await ctx.channel.send("https://cdn.discordapp.com/attachments/905278576482476042/1363047569969778738/neverkys.mp4?ex=68049c78&is=68034af8&hm=71022b37f0961e20c5d17062a73a1f2c8de40ee392be3c49b6729df37a84692b&")
+		
+		keyword = ['kys', 'kill yourself', 'kill your self']
+		if any(word in ctx.content.lower() for word in keyword ):
+			await ctx.delete()
+			await ctx.channel.send(f"{ctx.author.mention} says")
+			await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
 
 async def setup(bot):
 	await bot.add_cog(General(bot))

@@ -34,6 +34,7 @@ async def main():
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    await bot.http.bulk_upsert_global_commands(bot.application_id, [])
     print('------')
     await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="oh Good Morning!"))
 
