@@ -12,7 +12,6 @@ reload	- Reloads cogs
 
 Listeners:
 
-on_command - Logs into terminal whenever a user calls a command
 on_message - Checks for banned words. Deletes and pings the author afterwards
 
 
@@ -48,11 +47,6 @@ class Moderator(commands.Cog):
 		if any(word in ctx.content.lower() for word in BANNED_WORDS):
 			await ctx.delete()
 			await ctx.channel.send(f"That's a no no word {ctx.author.mention}! 😩👉👈")
-
-	# * TERMINAL LOGGING
-	@commands.Cog.listener()
-	async def on_command(self, ctx):
-		print(f'{ctx.author} triggered {ctx.command} in {ctx.channel}')
 
 	# * COMMAND RELOADER
 	@commands.command(name='reload', hidden=True)
