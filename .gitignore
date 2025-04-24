@@ -2,3 +2,6 @@ bot-env
 node_modules
 config.json
 cogs/__pycache__*
+__pycache__*
+uploads/*
+
