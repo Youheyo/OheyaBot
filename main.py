@@ -1,13 +1,13 @@
-# This example requires the 'members' and 'message_content' privileged intents to function.
-
+import os
+import asyncio
 import discord
 from discord.ext import commands
-from os import listdir
-import asyncio
 
 import json
 
-with open('config.json') as f:
+directory = os.path.dirname(os.path.abspath(__file__))
+
+with open(directory + "/config.json") as f:
     data = json.load(f)
     token = data["token"]
     prefix = data["prefix"]
@@ -21,7 +21,7 @@ description = "A 4Fun bot currently being developed into discord.py"
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), description=description, intents=intents)
 
 async def load():
-    for cog in listdir('./cogs'):
+    for cog in os.listdir(directory + '/cogs'):
         if cog.endswith('.py'):
             print(f"Loading in {cog}")
             await bot.load_extension(f'cogs.{cog[:-3]}')

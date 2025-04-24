@@ -16,14 +16,17 @@ on_message - Detects when a user has a certain string of words
 			- Tags
 				- KMS and related
 """
+
+import os
 import json
 from discord.ext import commands
-import discord
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 class General(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
-		with open('config.json') as f:
+		with open(os.path.dirname(directory)+'/config.json') as f:
 			data = json.load(f)
 			self.link = data['invite']
 

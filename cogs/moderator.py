@@ -54,7 +54,6 @@ class Moderator(commands.Cog):
 	async def reload_cog(self, ctx):
 		await ctx.send("Reloading commands...")
 		print("-----\nReloading commands")
-		# bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="oh Good Morning!"))
 		await self.bot.change_presence(status=Status.dnd, activity=activity.CustomActivity(name = "Reloading!!!"))
 		x = 0
 		for cog in listdir('./cogs'):
@@ -65,13 +64,6 @@ class Moderator(commands.Cog):
 		print (f"{x} Commands Reloaded")
 		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning!"))
 		await ctx.send(f"Commands Reloaded")
-
-	# ! Not working as of now
-	# @commands.command()
-	# @commands.is_owner()
-	# async def shutdown(self, ctx):
-	# 	print("Shutting Down")
-	# 	await ctx.Client.close()
 
 async def setup(bot):
 	await bot.add_cog(Moderator(bot))
