@@ -12,7 +12,9 @@ class Probability(commands.Cog):
 
     @commands.command()
     async def choose(self, ctx, *text, alias="choice"):
-        pass
+        choices = ' '.join(text).split('|')
+        await ctx.reply(choices[random.randint(0, len(choices) )])
+
 
 async def setup(bot):
 	await bot.add_cog(Probability(bot))
