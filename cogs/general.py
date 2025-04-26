@@ -65,7 +65,7 @@ class General(commands.Cog):
 		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
 		if any(word in ctx.content.lower() for word in keyword):
 			# await ctx.channel.send(file = file)
-			await ctx.channel.send("https://cdn.discordapp.com/attachments/905278576482476042/1363047569969778738/neverkys.mp4?ex=68049c78&is=68034af8&hm=71022b37f0961e20c5d17062a73a1f2c8de40ee392be3c49b6729df37a84692b&")
+			await ctx.channel.send("https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4")
 		
 		keyword = ['kys', 'kill yourself', 'kill your self']
 		if any(word in ctx.content.lower() for word in keyword ):

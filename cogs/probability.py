@@ -8,12 +8,17 @@ class Probability(commands.Cog):
 
     @commands.command()
     async def coinflip(self, ctx, alias="flipcoin"):
+        '''Flip a coin'''
         await ctx.reply("Heads" if random.randint(1, 2) == 1 else "Tails")
 
     @commands.command()
-    async def choose(self, ctx, *text, alias="choice"):
-        choices = ' '.join(text).split('|')
-        await ctx.reply(choices[random.randint(0, len(choices) )])
+    async def choose(self, ctx, *, text, alias="choice"):
+        '''Randomly picks from at least 2 options'''
+        choices = text.split('|')
+        if(len(choices) < 2):
+             await ctx.reply("Not enough choices. Please provide more e.g `ohchoose apple | orange | lemon`")
+        else:
+            await ctx.reply(random.choice(choices))
 
 
 async def setup(bot):
