@@ -16,9 +16,15 @@ on_message - Checks for banned words. Deletes and pings the author afterwards
 
 
 """
-from os import listdir
+# from os import listdir
+import os
+from asyncio import TimeoutError
 from discord.ext import commands
 from discord import Status, activity
+from sys import exit
+
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 BANNED_WORDS = []
 
@@ -54,16 +60,32 @@ class Moderator(commands.Cog):
 	async def reload_cog(self, ctx):
 		await ctx.send("Reloading commands...")
 		print("-----\nReloading commands")
+
 		await self.bot.change_presence(status=Status.dnd, activity=activity.CustomActivity(name = "Reloading!!!"))
-		x = 0
-		for cog in listdir('./cogs'):
-			if cog.endswith('.py'):
-				print(f"Loading in {cog}")
-				await self.bot.reload_extension(f'cogs.{cog[:-3]}')
-				x += 1
-		print (f"{x} Commands Reloaded")
+		async with ctx.channel.typing():
+			try:
+				x = 0
+				for cog in os.listdir(directory):
+					# print("Checking file: " + cog)
+					if cog.endswith('.py'):
+						print(f"Loading in {cog}")
+						await self.bot.reload_extension(f'cogs.{cog[:-3]}')
+						x += 1
+				print (f"{x} Commands Reloaded")
+				await ctx.send(f"Commands Reloaded")
+		
+			except TimeoutError:
+				await ctx.channel.send("ERROR: Time out. Commands failed to load")
+		
 		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning!"))
-		await ctx.send(f"Commands Reloaded")
+
+	
+	@commands.command(name='reset', hidden=True)
+	@commands.is_owner()
+	async def reset(self, ctx):
+		print("Reconnecting to Discord")
+		# await self.bot.close()
+		exit(0)
 
 async def setup(bot):
 	await bot.add_cog(Moderator(bot))

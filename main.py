@@ -16,7 +16,7 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
-description = "A 4Fun bot currently being developed into discord.py"
+description = "A 4Fun bot currently being developed into discord.py\nThe bot uses 'oh' as the prefix"
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), description=description, intents=intents)
 

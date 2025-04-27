@@ -10,14 +10,15 @@ class Logger(commands.Cog):
     @commands.Cog.listener()
     async def on_command(self, ctx):
         print(f'{ctx.author} triggered {ctx.command} in {ctx.channel}')
-        ctx.start_time = ctx.time.perf_counter()
 
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):
         print(f'{ctx.author} | Finished {ctx.command} in {ctx.channel}')
-        # duration = (time.perf_counter() - ctx.start_time)
-        # print(f'{ctx.author} triggered {ctx.command} in {ctx.channel} | Took {duration}')
+
+    # @commands.Cog.listener()
+    # async def on_error(self, ctx, error):
+    #     print(f"Command {ctx.command} failed to run: Error {error}")
 
 
 async def setup(bot):

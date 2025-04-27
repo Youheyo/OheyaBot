@@ -65,13 +65,15 @@ class General(commands.Cog):
 		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
 		if any(word in ctx.content.lower() for word in keyword):
 			# await ctx.channel.send(file = file)
-			await ctx.channel.send("https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4")
+			async with ctx.channel.typing():
+				await ctx.channel.send("https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4")
 		
 		keyword = ['kys', 'kill yourself', 'kill your self']
 		if any(word in ctx.content.lower() for word in keyword ):
-			await ctx.delete()
-			await ctx.channel.send(f"{ctx.author.mention} says")
-			await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
+			async with ctx.channel.typing():
+				await ctx.delete()
+				await ctx.channel.send(f"{ctx.author.mention} says")
+				await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
 
 async def setup(bot):
 	await bot.add_cog(General(bot))
