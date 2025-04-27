@@ -16,12 +16,14 @@ on_message - Checks for banned words. Deletes and pings the author afterwards
 
 
 """
-# from os import listdir
 import os
+import time
+
+from tqdm import tqdm
+from sys import exit
 from asyncio import TimeoutError
 from discord.ext import commands
 from discord import Status, activity
-from sys import exit
 
 
 directory = os.path.dirname(os.path.abspath(__file__))
@@ -58,21 +60,21 @@ class Moderator(commands.Cog):
 	@commands.command(name='reload', hidden=True)
 	@commands.is_owner()
 	async def reload_cog(self, ctx):
-		await ctx.send("Reloading commands...")
-		print("-----\nReloading commands")
 
 		await self.bot.change_presence(status=Status.dnd, activity=activity.CustomActivity(name = "Reloading!!!"))
 		async with ctx.channel.typing():
 			try:
-				x = 0
-				for cog in os.listdir(directory):
-					# print("Checking file: " + cog)
-					if cog.endswith('.py'):
-						print(f"Loading in {cog}")
+				cog_list =[f for f in os.listdir(directory) if f.endswith('.py')]
+
+				with tqdm(cog_list, unit="cog") as progress:
+					msg = await ctx.send("Reloading commands...")
+					x = 0
+					for cog in progress:
+						progress.set_description(f"Reloading {cog}")
 						await self.bot.reload_extension(f'cogs.{cog[:-3]}')
 						x += 1
-				print (f"{x} Commands Reloaded")
-				await ctx.send(f"Commands Reloaded")
+						await msg.edit(content=f"Reload Progress: {(x/len(cog_list) * 100):.0f}%")
+					await msg.edit(content=f"Commands Successfully Reloaded")
 		
 			except TimeoutError:
 				await ctx.channel.send("ERROR: Time out. Commands failed to load")

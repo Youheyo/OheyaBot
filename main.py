@@ -1,9 +1,11 @@
 import os
 import asyncio
+import json
 import discord
+
+from tqdm import tqdm
 from discord.ext import commands
 
-import json
 
 directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,10 +23,13 @@ description = "A 4Fun bot currently being developed into discord.py\nThe bot use
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), description=description, intents=intents)
 
 async def load():
-    for cog in os.listdir(directory + '/cogs'):
-        if cog.endswith('.py'):
-            print(f"Loading in {cog}")
+    cog_list = (file for file in os.listdir(directory + '/cogs') if file.endswith('.py'))
+    with tqdm(cog_list, unit="cog") as cogs:
+        cogs.write("Cog loading in progress...")
+        for cog in cogs:
+            cogs.set_description(f"Loading {cog}")
             await bot.load_extension(f'cogs.{cog[:-3]}')
+        cogs.write("Cog loading finished!")
 
 async def main():
     async with bot:
