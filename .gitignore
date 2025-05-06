@@ -1,7 +1,12 @@
+# Packages
 bot-env
 node_modules
+
+# Config
 config.json
+uploads/*
+
+# Cache
 cogs/__pycache__*
 __pycache__*
-uploads/*
 

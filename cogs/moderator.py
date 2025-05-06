@@ -66,6 +66,7 @@ class Moderator(commands.Cog):
 			try:
 				cog_list =[f for f in os.listdir(directory) if f.endswith('.py')]
 
+				print(" - - - - - ")
 				with tqdm(cog_list, unit="cog") as progress:
 					msg = await ctx.send("Reloading commands...")
 					x = 0
@@ -74,6 +75,7 @@ class Moderator(commands.Cog):
 						await self.bot.reload_extension(f'cogs.{cog[:-3]}')
 						x += 1
 						await msg.edit(content=f"Reload Progress: {(x/len(cog_list) * 100):.0f}%")
+					print(" - - - - - ")
 					await msg.edit(content=f"Commands Successfully Reloaded")
 		
 			except TimeoutError:

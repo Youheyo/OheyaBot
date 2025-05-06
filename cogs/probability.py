@@ -1,3 +1,12 @@
+"""
+Probability Related commands
+
+Commands:
+coinflip    -   flips a coin for heads or tails: 50/50
+choose      -   Chooses randomly from options provided by user
+
+"""
+
 from discord.ext import commands
 import random
 
