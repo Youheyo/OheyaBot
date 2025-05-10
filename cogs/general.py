@@ -19,6 +19,8 @@ on_message - Detects when a user has a certain string of words
 
 import os
 import json
+import random
+from datetime import datetime
 from discord.ext import commands
 
 directory = os.path.dirname(os.path.abspath(__file__))
@@ -29,6 +31,10 @@ class General(commands.Cog):
 		with open(os.path.dirname(directory)+'/config.json') as f:
 			data = json.load(f)
 			self.link = data['invite']
+		with open(os.path.dirname(directory)+'/server_ids.json') as f:
+			data = json.load(f)
+			self.member_ids = list(data['member_id'].items())
+
 
 	@commands.command()
 	async def echo(self, ctx, *text, alias="Echo"):
@@ -66,14 +72,23 @@ class General(commands.Cog):
 		if any(word in ctx.content.lower() for word in keyword):
 			# await ctx.channel.send(file = file)
 			async with ctx.channel.typing():
-				await ctx.channel.send("https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4")
+				print(f"{datetime.now().strftime("%H:%M:%S")} Trigger Word Detected")
+				helpful_links = ["https://media.discordapp.net/attachments/805871223903879249/1367776359862243421/image.png?ex=6815d080&is=68147f00&hm=7991c557672b552bd3aade9ab7ef77f5a71a35ed5da158c2d8b9a7dc0115030d&=&format=webp&quality=lossless&width=903&height=896","https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4"]
+				await ctx.reply(random.choice(helpful_links))
 		
 		keyword = ['kys', 'kill yourself', 'kill your self']
 		if any(word in ctx.content.lower() for word in keyword ):
 			async with ctx.channel.typing():
 				await ctx.delete()
+				print(f"{datetime.now().strftime("%H:%M:%S")} Trigger Word Detected")
 				await ctx.channel.send(f"{ctx.author.mention} says")
 				await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
+
+		keyword = ['tom', 'tom com', 'tom.com', 'tomcom']
+		if any(word in ctx.content.lower() for word in keyword ):
+			id = await self.bot.fetch_user(self.member_ids[0][1])
+			print(f"{datetime.now().strftime("%H:%M:%S")} Tom Word Detected - {ctx.jump_url}")
+			await id.send(f"Tom Mentioned in {ctx.jump_url}")
 
 async def setup(bot):
 	await bot.add_cog(General(bot))

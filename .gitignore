@@ -6,7 +6,11 @@ node_modules
 config.json
 uploads/*
 
+server_ids.json
+
 # Cache
 cogs/__pycache__*
 __pycache__*
 
+# Logging
+*.[Ll]og

@@ -5,6 +5,7 @@ import discord
 
 from tqdm import tqdm
 from discord.ext import commands
+import logging
 
 
 directory = os.path.dirname(os.path.abspath(__file__))
@@ -22,6 +23,9 @@ description = "A 4Fun bot currently being developed into discord.py\nThe bot use
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), description=description, intents=intents)
 
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+
+
 async def load():
     cog_list = (file for file in os.listdir(directory + '/cogs') if file.endswith('.py'))
     with tqdm(cog_list, unit="cog") as cogs:
@@ -35,6 +39,7 @@ async def main():
     async with bot:
         await load()
         await bot.start(token)
+        await bot.run(token, log_handler=handler)
 
 @bot.event
 async def on_ready():
