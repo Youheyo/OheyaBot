@@ -87,6 +87,9 @@ class General(commands.Cog):
 		keyword = ['tom', 'tom com', 'tom.com', 'tomcom']
 		if any(word in ctx.content.lower() for word in keyword ):
 			id = await self.bot.fetch_user(self.member_ids[0][1])
+
+			await ctx.add_reaction("🍅")
+
 			print(f"{datetime.now().strftime("%H:%M:%S")} Tom Word Detected - {ctx.jump_url}")
 			await id.send(f"Tom Mentioned in {ctx.jump_url}")
 
