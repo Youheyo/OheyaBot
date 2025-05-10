@@ -56,40 +56,5 @@ class Moderator(commands.Cog):
 			await ctx.delete()
 			await ctx.channel.send(f"That's a no no word {ctx.author.mention}! 😩👉👈")
 
-	# * COMMAND RELOADER
-	@commands.command(name='reload', hidden=True)
-	@commands.is_owner()
-	async def reload_cog(self, ctx):
-
-		await self.bot.change_presence(status=Status.dnd, activity=activity.CustomActivity(name = "Reloading!!!"))
-		async with ctx.channel.typing():
-			try:
-				cog_list =[f for f in os.listdir(directory) if f.endswith('.py')]
-
-				print(" - - - - - ")
-				with tqdm(cog_list, unit="cog") as progress:
-					msg = await ctx.send("Reloading commands...")
-					x = 0
-					for cog in progress:
-						progress.set_description(f"Reloading {cog}")
-						await self.bot.reload_extension(f'cogs.{cog[:-3]}')
-						x += 1
-						await msg.edit(content=f"Reload Progress: {(x/len(cog_list) * 100):.0f}%")
-					print(" - - - - - ")
-					await msg.edit(content=f"Commands Successfully Reloaded")
-		
-			except TimeoutError:
-				await ctx.channel.send("ERROR: Time out. Commands failed to load")
-		
-		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning!"))
-
-	
-	@commands.command(name='reset', hidden=True)
-	@commands.is_owner()
-	async def reset(self, ctx):
-		print("Reconnecting to Discord")
-		# await self.bot.close()
-		exit(0)
-
 async def setup(bot):
 	await bot.add_cog(Moderator(bot))
