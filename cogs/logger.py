@@ -32,7 +32,7 @@ class Logger(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        print(f"{datetime.now().strftime("%H:%M:%S")} : Command {ctx.command} failed to run: Error {error}")
+        print(f"{datetime.now().strftime("%H:%M:%S")} : ERROR: {error}")
 
 
 async def setup(bot):
