@@ -14,6 +14,13 @@ class dev(commands.Cog):
 	@commands.is_owner()
 	async def reload_cog(self, ctx, cog):
 		try:
+			if cog.lower() == 'all':
+				await self.reload_all_cogs(ctx)
+				return
+			elif cog.lower() == 'full':
+				await self.full_reload(ctx)
+				return
+			
 			await self.bot.reload_extension(f'cogs.{cog}')
 			await ctx.send(f"{cog} successfully reloaded", delete_after=5)
 		except commands.ExtensionNotFound:
@@ -106,6 +113,10 @@ class dev(commands.Cog):
 	@commands.is_owner()
 	async def unload_cog(self, ctx, cog):
 		try:
+			if(cog.lower() == 'dev'):
+				await ctx.send("You cannot unload dev", delete_after=5)
+				return
+
 			await self.bot.unload_extension(f'cogs.{cog}')
 			await ctx.send(f"{cog} unloaded!", delete_after=5)
 		except commands.ExtensionNotFound:

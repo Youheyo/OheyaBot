@@ -2,10 +2,10 @@ import os
 import asyncio
 import json
 import discord
+import logging
 
 from tqdm import tqdm
 from discord.ext import commands
-import logging
 
 
 directory = os.path.dirname(os.path.abspath(__file__))

@@ -61,6 +61,7 @@ class General(commands.Cog):
 		await ctx.send(f"Pong! {round(self.bot.latency* 1000, 2)} ms")
 
 	@commands.Cog.listener()
+	@commands.guild_only()
 	async def on_message(self, ctx):
 
 		'''Sends a message depending on the message content'''
