@@ -79,6 +79,15 @@ class General(commands.Cog):
 				trigger_check = True
 				helpful_links = ["https://media.discordapp.net/attachments/805871223903879249/1367776359862243421/image.png?ex=6815d080&is=68147f00&hm=7991c557672b552bd3aade9ab7ef77f5a71a35ed5da158c2d8b9a7dc0115030d&=&format=webp&quality=lossless&width=903&height=896","https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4"]
 				await ctx.reply(random.choice(helpful_links))
+
+		keyword = ['awoo']
+		if any(word in ctx.content.lower() for word in keyword):
+			async with ctx.channel.typing():
+				trigger_check = True
+				
+				helpful_links = ["https://media.discordapp.net/attachments/805871223903879249/1372615695581577378/FZK2qvKVQAE6Kbb.png?ex=68276b7b&is=682619fb&hm=24e44e06262d93b6e8aee40689ebe72e89a0ab871aba2e396b515612959fbb52&=&format=webp&quality=lossless&width=700&height=896"]
+				await ctx.reply(random.choice(helpful_links))
+				await ctx.add_reaction("🐺")
 		
 		keyword = ['kys', 'kill yourself', 'kill your self']
 		if any(word in ctx.content.lower() for word in keyword ):
@@ -88,15 +97,37 @@ class General(commands.Cog):
 				await ctx.channel.send(f"{ctx.author.mention} says")
 				await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
 
+		keyword = ['league of legends']
+		if any(word in ctx.content.lower() for word in keyword):
+			await ctx.channel.send("https://vxtwitter.com/JPT_Struggles/status/1923268579270537251?mx=1")
+			trigger_check = True
+
+		keyword = ['goat']
+		if any(word in ctx.content.lower() for word in keyword):
+			rand = random.randrange(1, 100)
+			print(rand)
+			if(rand <= 10):
+				await ctx.channel.send("https://tenor.com/view/lebron-sunshine-lebron-james-sunshine-sunshine-lebron-you-are-my-sunshine-you-are-my-sunshine-gif-509896211431970290")
+				trigger_check = True
+
+		keyword = ['invisible']
+		if any(word in ctx.content.lower() for word in keyword):
+			await ctx.reply("https://tenor.com/view/mgs-metal-gear-solid-mgs2-metal-gear-solid-2-snake-gif-13225802252216398615")
+			trigger_check = True
+
 		keyword = ['tom', 'tom com', 'tom.com', 'tomcom']
 		if any(word in ctx.content.lower() for word in keyword ):
 			try:
 				id = await self.bot.fetch_user(self.member_ids[0][1])
 
 				await ctx.add_reaction("🍅")
-
+				trigger_check = True
 				print(f"{datetime.now().strftime("%H:%M:%S")} Tom Word Detected - {ctx.jump_url}")
-				await id.send(f"Tom Mentioned in {ctx.jump_url}")
+
+				if(random.randrange(1, 100) == 1):
+					await id.send("https://cdn.discordapp.com/attachments/752816386748973077/1373154092012273674/GIdt-Rgz1nwOv2cBAL2f8d9mp4pSbmdjAAAF.mp4?ex=682ab267&is=682960e7&hm=55c3d70109ede9f3ab7f610d0d1d2d3a05a5fa4ba8ef18b60aa0b172243db9b5&")
+				else:
+					await id.send(f"Tom Mentioned in {ctx.jump_url}")
 			except discord.NotFound:
 				print(f"{id} cannot be found")
 			except discord.HTTPException:
