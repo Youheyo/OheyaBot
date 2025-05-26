@@ -73,6 +73,23 @@ class General(commands.Cog):
 		random_check: bool = False
 		rand100: int = random.randrange(1, 100)
 
+		# * Template for copy pasting
+		# keyword = ['']
+		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
+		# if any(word in ctx.content.lower() for word in keyword):
+		# 	async with ctx.channel.typing():
+		# 		trigger_check = ""
+		#		await ctx.channel.send(file = file)
+		# 		await ctx.channel.send("Sample text")
+		# 		await ctx.add_reaction("🙂")
+
+		keyword = ['i love my jungle', 'i love jungle', 'i love my jng']
+		if any(word in ctx.content.lower() for word in keyword):
+			trigger_check = "JNG"
+			# await ctx.channel.send("Sample text")
+			emoji: discord.Emoji = ctx.guild.get_emoji(738439323031961723)
+			await ctx.add_reaction(emoji)
+
 		keyword = ['kms', 'kill myself', 'kill my self' ]
 		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
 		if any(word in ctx.content.lower() for word in keyword):
