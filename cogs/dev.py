@@ -58,7 +58,7 @@ class dev(commands.Cog):
 			except commands.ExtensionNotLoaded:
 				await ctx.channel.send("ERROR: A command hasn't been loaded yet. Please do a full reload through `ohfullreload` or add it manually through `ohloadcog [command]`")
 		
-		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning!"))
+		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning! | use ohhelp for list of commands"))
 
 	
 	@commands.command(name='fullreload', hidden=True)
@@ -96,7 +96,7 @@ class dev(commands.Cog):
 		except TimeoutError:
 			await ctx.channel.send("ERROR: Time out. Commands failed to load")
 
-		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning!"))
+		await self.bot.change_presence(status=Status.online, activity=activity.CustomActivity(name = "oh Good Morning! | use ohhelp for list of commands"))
 
 	@commands.command(name='loadcog', hidden=True)
 	@commands.is_owner()

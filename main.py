@@ -45,6 +45,6 @@ async def main():
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
-    await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="oh Good Morning!"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="oh Good Morning! | use ohhelp for list of commands"))
 
 asyncio.run(main())
