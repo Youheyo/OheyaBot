@@ -20,8 +20,8 @@ on_message - Detects when a user has a certain string of words
 import os
 import json
 import random
-import discord
 from datetime import datetime
+import discord
 from discord.ext import commands
 
 directory = os.path.dirname(os.path.abspath(__file__))
@@ -66,7 +66,7 @@ class General(commands.Cog):
 
 		'''Sends a message depending on the message content'''
 
-		if(ctx.author.bot):
+		if ctx.author.bot:
 			return
 
 		trigger_check = ""
@@ -82,6 +82,15 @@ class General(commands.Cog):
 		#		await ctx.channel.send(file = file)
 		# 		await ctx.channel.send("Sample text")
 		# 		await ctx.add_reaction("🙂")
+		#		msg_trigger_handler(trigger_check, rand100)
+		#		return
+
+		keyword = ['umazing', 'umahusay', 'kabayos']
+		if any(word in ctx.content.lower() for word in keyword):
+			trigger_check = "uma"
+			await ctx.add_reaction("🐴")
+			msg_trigger_handler(trigger_check, rand100)
+			return
 
 		keyword = ['i love my jungle', 'i love jungle', 'i love my jng']
 		if any(word in ctx.content.lower() for word in keyword):
@@ -89,6 +98,8 @@ class General(commands.Cog):
 			# await ctx.channel.send("Sample text")
 			emoji: discord.Emoji = ctx.guild.get_emoji(738439323031961723)
 			await ctx.add_reaction(emoji)
+			msg_trigger_handler(trigger_check, rand100)
+			return
 
 		keyword = ['kms', 'kill myself', 'kill my self' ]
 		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
@@ -98,6 +109,8 @@ class General(commands.Cog):
 				trigger_check = "K"
 				helpful_links = ["https://media.discordapp.net/attachments/805871223903879249/1367776359862243421/image.png?ex=6815d080&is=68147f00&hm=7991c557672b552bd3aade9ab7ef77f5a71a35ed5da158c2d8b9a7dc0115030d&=&format=webp&quality=lossless&width=903&height=896","https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4"]
 				await ctx.reply(random.choice(helpful_links))
+				msg_trigger_handler(trigger_check, rand100)
+				return
 
 		keyword = ['kys', 'kill yourself', 'kill your self']
 		if any(word in ctx.content.lower() for word in keyword ):
@@ -106,11 +119,15 @@ class General(commands.Cog):
 				await ctx.delete()
 				await ctx.channel.send(f"{ctx.author.mention} says")
 				await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
-
+				msg_trigger_handler(trigger_check, rand100)
+				return
+			
 		keyword = ['league of legends', 'league-of-legends']
 		if any(word in ctx.content.lower() for word in keyword):
 			await ctx.channel.send("https://vxtwitter.com/JPT_Struggles/status/1923268579270537251?mx=1")
 			trigger_check = "LoL"
+			msg_trigger_handler(trigger_check, rand100)
+			return
 
 		keyword = ['goat']
 		if any(word in ctx.content.lower() for word in keyword):
@@ -118,11 +135,8 @@ class General(commands.Cog):
 			trigger_check = "GOAT"
 			if(rand100 <= 10):
 				await ctx.channel.send("https://tenor.com/view/lebron-sunshine-lebron-james-sunshine-sunshine-lebron-you-are-my-sunshine-you-are-my-sunshine-gif-509896211431970290")
-
-		keyword = ['invisible']
-		if any(word in ctx.content.lower() for word in keyword):
-			await ctx.reply("https://tenor.com/view/mgs-metal-gear-solid-mgs2-metal-gear-solid-2-snake-gif-13225802252216398615")
-			trigger_check = "MGS"
+			msg_trigger_handler(trigger_check, rand100)
+			return
 
 		keyword = ['tom', 'tom com', 'tom.com', 'tomcom']
 		if any(word in ctx.content.lower() for word in keyword ):
@@ -138,13 +152,17 @@ class General(commands.Cog):
 					await id.send("https://cdn.discordapp.com/attachments/752816386748973077/1373154092012273674/GIdt-Rgz1nwOv2cBAL2f8d9mp4pSbmdjAAAF.mp4?ex=682ab267&is=682960e7&hm=55c3d70109ede9f3ab7f610d0d1d2d3a05a5fa4ba8ef18b60aa0b172243db9b5&")
 				else:
 					await id.send(f"Tom Mentioned in {ctx.jump_url}")
+
+				msg_trigger_handler(trigger_check, rand100)
+				return
 			except discord.NotFound:
 				print(f"{id} cannot be found")
 			except discord.HTTPException:
 				print("Tom Sender failed to fetch user")
 
-		if(trigger_check != ""): 
-			print(f"{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected - {rand100}")
+def msg_trigger_handler(trigger_check, rand100=int):
+	if(trigger_check != ""): 
+		print(f"{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected - {rand100}")
 
 
 async def setup(bot):
