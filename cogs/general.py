@@ -74,6 +74,7 @@ class General(commands.Cog):
 		rand100: int = random.randrange(1, 100)
 
 		# * Template for copy pasting
+		# * Remove rand100 if no luck is involved
 		# keyword = ['']
 		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
 		# if any(word in ctx.content.lower() for word in keyword):
@@ -101,6 +102,15 @@ class General(commands.Cog):
 			msg_trigger_handler(trigger_check, rand100)
 			return
 
+		keyword = ['i hate you kitasan']
+		if any(word in ctx.content.lower() for word in keyword):
+			async with ctx.channel.typing():
+				trigger_check = "Kitasan"
+				# await ctx.channel.send(file = file)
+				await ctx.channel.send("https://media.discordapp.net/attachments/623847506727403520/1442160025408770171/GzFtFusbAAAixDJ.png?ex=693637f0&is=6934e670&hm=0d851570a98a6a48ec4fcb590c1a317af842423871e562f2ab77fa7feed5a015&=&format=webp&quality=lossless&width=400&height=225")
+				msg_trigger_handler(trigger_check, rand100)
+				return
+
 		keyword = ['kms', 'kill myself', 'kill my self' ]
 		# file = discord.File("./uploads/neverkys.mp4", filename="neverkys.mp4")
 		if any(word in ctx.content.lower() for word in keyword):
@@ -119,14 +129,14 @@ class General(commands.Cog):
 				await ctx.delete()
 				await ctx.channel.send(f"{ctx.author.mention} says")
 				await ctx.channel.send(f"https://tenor.com/view/keep-your-self-safe-gif-26048046")
-				msg_trigger_handler(trigger_check, rand100)
+				msg_trigger_handler(trigger_check)
 				return
 			
 		keyword = ['league of legends', 'league-of-legends']
 		if any(word in ctx.content.lower() for word in keyword):
 			await ctx.channel.send("https://vxtwitter.com/JPT_Struggles/status/1923268579270537251?mx=1")
 			trigger_check = "LoL"
-			msg_trigger_handler(trigger_check, rand100)
+			msg_trigger_handler(trigger_check)
 			return
 
 		keyword = ['goat']
@@ -145,7 +155,6 @@ class General(commands.Cog):
 
 				await ctx.add_reaction("🍅")
 				trigger_check = "Tom"
-				random_check = True
 				# print(f"{datetime.now().strftime("%H:%M:%S")} Tom Word Detected - {ctx.jump_url}")
 
 				if(rand100 == 1):
@@ -160,9 +169,12 @@ class General(commands.Cog):
 			except discord.HTTPException:
 				print("Tom Sender failed to fetch user")
 
-def msg_trigger_handler(trigger_check, rand100=int):
-	if(trigger_check != ""): 
-		print(f"{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected - {rand100}")
+def msg_trigger_handler(trigger_check, rand100=-1):
+	text = f"{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected"
+	if(rand100 > 0):
+		text += f" - Rolled a {rand100}"
+	print(text)
+	# print(f"{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected - {rand100}")
 
 
 async def setup(bot):
