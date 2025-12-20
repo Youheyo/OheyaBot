@@ -4,8 +4,6 @@ node_modules
 
 # Config
 config.json
-uploads/*
-
 server_ids.json
 
 # Cache
@@ -14,3 +12,4 @@ __pycache__*
 
 # Logging
 *.[Ll]og
+

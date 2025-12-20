@@ -90,7 +90,7 @@ class General(commands.Cog):
 		if any(word in ctx.content.lower() for word in keyword):
 			trigger_check = "uma"
 			await ctx.add_reaction("🐴")
-			msg_trigger_handler(trigger_check, rand100)
+			msg_trigger_handler(trigger_check)
 			return
 
 		keyword = ['i love my jungle', 'i love jungle', 'i love my jng']
@@ -99,16 +99,17 @@ class General(commands.Cog):
 			# await ctx.channel.send("Sample text")
 			emoji: discord.Emoji = ctx.guild.get_emoji(738439323031961723)
 			await ctx.add_reaction(emoji)
-			msg_trigger_handler(trigger_check, rand100)
+			msg_trigger_handler(trigger_check)
 			return
 
 		keyword = ['i hate you kitasan']
+		file = discord.File("./uploads/kitasanLQ.jpg", filename="kitasanLQ.jpg")
 		if any(word in ctx.content.lower() for word in keyword):
 			async with ctx.channel.typing():
 				trigger_check = "Kitasan"
-				# await ctx.channel.send(file = file)
-				await ctx.channel.send("https://media.discordapp.net/attachments/623847506727403520/1442160025408770171/GzFtFusbAAAixDJ.png?ex=693637f0&is=6934e670&hm=0d851570a98a6a48ec4fcb590c1a317af842423871e562f2ab77fa7feed5a015&=&format=webp&quality=lossless&width=400&height=225")
-				msg_trigger_handler(trigger_check, rand100)
+				await ctx.channel.send(file = file)
+				# await ctx.channel.send("https://media.discordapp.net/attachments/623847506727403520/1442160025408770171/GzFtFusbAAAixDJ.png?ex=693637f0&is=6934e670&hm=0d851570a98a6a48ec4fcb590c1a317af842423871e562f2ab77fa7feed5a015&=&format=webp&quality=lossless&width=400&height=225")
+				msg_trigger_handler(trigger_check)
 				return
 
 		keyword = ['kms', 'kill myself', 'kill my self' ]
@@ -132,6 +133,15 @@ class General(commands.Cog):
 				msg_trigger_handler(trigger_check)
 				return
 			
+		keyword = ['samui']
+		file = discord.File("./uploads/samuiHoshino.mp4", filename="samuiHoshino.mp4")
+		if any(word in ctx.content.lower() for word in keyword):
+			async with ctx.channel.typing():
+				trigger_check = "samui"
+				await ctx.channel.send(file = file)
+				msg_trigger_handler(trigger_check)
+				return 
+		
 		keyword = ['league of legends', 'league-of-legends']
 		if any(word in ctx.content.lower() for word in keyword):
 			await ctx.channel.send("https://vxtwitter.com/JPT_Struggles/status/1923268579270537251?mx=1")
