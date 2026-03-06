@@ -13,4 +13,4 @@ PyNaCl==1.6.2
 tqdm==4.67.1
 typing_extensions==4.15.0
 yarl==1.18.3
-yt-dlp==2025.1.26
+yt-dlp==2026.3.3
