@@ -161,7 +161,9 @@ class General(commands.Cog):
 		keyword = ['tom', 'tom com', 'tom.com', 'tomcom']
 		if any(word in ctx.content.lower() for word in keyword ):
 			try:
-				id = await self.bot.fetch_user(self.member_ids[0][1])
+				id = await self.bot.fetch_user(self.member_ids[1][1])
+
+				print(id)
 
 				await ctx.add_reaction("🍅")
 				trigger_check = "Tom"
@@ -180,7 +182,7 @@ class General(commands.Cog):
 				print("Tom Sender failed to fetch user")
 
 def msg_trigger_handler(trigger_check, rand100=-1):
-	text = f"{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected"
+	text = f'{datetime.now().strftime("%H:%M:%S")} : {trigger_check} - Trigger Word Detected'
 	if(rand100 > 0):
 		text += f" - Rolled a {rand100}"
 	print(text)

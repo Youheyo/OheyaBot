@@ -2,4 +2,4 @@
 
 echo "Starting Python Virtual Environment" 
 
-source ./bot-env/bin/activate
+source ./.venv/bin/activate
