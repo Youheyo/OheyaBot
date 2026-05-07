@@ -163,7 +163,12 @@ class General(commands.Cog):
 			try:
 				id = await self.bot.fetch_user(self.member_ids[1][1])
 
+<<<<<<< HEAD
 				print(id)
+=======
+				print(f"Sent TOM to {id}")
+
+>>>>>>> dev
 
 				await ctx.add_reaction("🍅")
 				trigger_check = "Tom"
