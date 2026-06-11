@@ -11,7 +11,9 @@ class PrefixLink(commands.Cog):
 	def __init__(self, bot:commands.Bot):
 		self.bot = bot
 
-
+	# TODO add a way to choose the embed
+	# TODO An 'X' Reaction in case the embed went wrong
+	# TODO Some prefixes can have translation features. Add a possibility for it
 	@commands.command(name = "fix",
 					usage="ohfix [link]",
 					description = "Adds in the prefix on links for discord embedding"

@@ -23,7 +23,7 @@ class Logger(commands.Cog):
     # * TERMINAL LOGGING
     @commands.Cog.listener()
     async def on_command(self, ctx):
-        print(f'{datetime.now().strftime("%H:%M:%S")} : {ctx.author} triggered {ctx.command} in #{ctx.channel}')
+        print(f'{datetime.now().strftime("%H:%M:%S")} : {ctx.author} | triggered {ctx.command} in #{ctx.channel}')
 
 
     @commands.Cog.listener()

@@ -100,7 +100,7 @@ class dev(commands.Cog):
 
 	@commands.command(name='loadcog', hidden=True)
 	@commands.is_owner()
-	async def load_cog(self, ctx, cog):
+	async def load_cog(self, ctx, cog, alias='load'):
 		try:
 			await self.bot.load_extension(f'cogs.{cog}')
 		except commands.ExtensionNotFound:
