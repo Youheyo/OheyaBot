@@ -10,7 +10,7 @@ from discord.ext import commands
 
 directory = os.path.dirname(os.path.abspath(__file__))
 
-with open(directory + "/config.json") as f:
+with open(directory + "/config.json", encoding='utf-8') as f:
     data = json.load(f)
     token = data["token"]
     prefix = data["prefix"]
