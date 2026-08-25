@@ -1,0 +1,19 @@
+{
+
+
+	"keyword_responses":[
+		{
+			"keyword": ["tom"],
+			"reaction": "822866270382587904",
+			"response": "TOM"
+		},
+
+
+		{
+			"keywords": ["umazing", "umahusay", "kabayos"],
+			"reaction": "822866270382587904",
+			"response": "Horse"
+		}
+	]
+
+}

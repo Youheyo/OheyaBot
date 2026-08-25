@@ -1,0 +1,98 @@
+{
+
+	
+	"__sample": 
+	[
+		{
+			"keywords": ["lowercase_keywords"],
+			"response": "Sample_Response!",
+			"emoji_id": "Custom_ID_for_server_specific",
+			"reaction": "built_in_emojis",
+			"trigger_check": "For_Logging",
+			"chance": "0",
+			"file": 
+			[
+				{
+					"file_location": "relative_location_of_file",
+					"file_name": "file_name.jpg"
+				}
+			]
+		}
+	],
+	
+	"keyword_responses": [
+
+		{
+			"keywords": ["tom"],
+			"reaction": "🍅",
+			"trigger_check": "TOM"
+
+		},
+
+		{
+			"keywords": ["umazing", "umahusay", "kabayos"],
+			"reaction": "🐴",
+			"trigger_check": "uma"
+		},
+		
+		{
+			"keywords": ["i love my jungle", "i love jungle", "i love my jng"],
+			
+			"emoji_id": "738439323031961723",
+			"trigger_check": "JNG"
+		},
+		
+		{
+			"keywords": ["i hate you kitasan"],
+			"file":
+			[
+				{
+					"file_location": "./uploads/kitasanLQ.jpg",
+					"file_name": "kitasanLQ.jpg"
+				}
+			]
+			
+		},
+		
+		{
+			"keywords": ["kms", "kill myself", "kill my self" ],
+			"response":[
+				
+				"https://media.discordapp.net/attachments/805871223903879249/1367776359862243421/image.png?ex=6815d080&is=68147f00&hm=7991c557672b552bd3aade9ab7ef77f5a71a35ed5da158c2d8b9a7dc0115030d&=&format=webp&quality=lossless&width=903&height=896", 	
+				"https://cdn.discordapp.com/attachments/905278576482476042/1365220101456134184/neverkys.mp4"	
+			],
+			"trigger_check": "K"
+		},
+		
+		{
+			"keywords": ["samui"],
+			"file":
+			[
+				{
+					"file_location": "./uploads/samuiHoshino.mp4",
+					"file_name": "samuiHoshino.mp4"
+				}
+			]
+		},
+
+		{
+			"keywords": ["league of legends", "league-of-legends"],
+			"response": "https://vxtwitter.com/JPT_Struggles/status/1923268579270537251?mx=1",
+			"trigger_check": "LoL"
+		},
+
+		{
+			"keywords": ["goat"],
+			"response": "https://tenor.com/view/lebron-sunshine-lebron-james-sunshine-sunshine-lebron-you-are-my-sunshine-you-are-my-sunshine-gif-509896211431970290",
+			"trigger_check": "GOAT",
+			"chance": "10"
+		},
+
+		{
+			"keywords": ["fuck"],
+			"trigger_check": "F",
+			"response": "https://pbs.twimg.com/media/HIlYX2SbMAAwif0?format=jpg&name=orig",
+			"chance": "1"
+		}
+	]
+}
